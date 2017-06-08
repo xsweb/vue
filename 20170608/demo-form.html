@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+	</style>
+	<body>
+		<div id="demo">
+			<fieldset>
+				<legend>vue表单增删demo</legend>
+				<div>
+					<lable>姓名</lable>
+					<input type="text" v-model="newData.name"/>
+				</div>
+				<div>
+					<lable>年龄</lable>
+					<input type="number" v-model="newData.age" />
+				</div>
+				<div>
+					<lable>性别</lable>
+					<select name="" id="" v-model="newData.sex">
+						<option value="男">男</options>
+						<option value="女">女</option>
+					</select>
+				</div>
+				<div>
+					<button @click="addData(newData)">增加</button>
+				</div>
+			</fieldset>
+			
+				<table>
+					<thead>
+						<tr>
+							<th v-for="column in columns">{{column.title}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(tbData,$index) in tbDatas">
+							<td>{{tbData.name}}</td>
+							<td>{{tbData.age}}</td>
+							<td>{{tbData.sex}}</td>
+							<td><button @click="delData($index)">删除</button></td>
+						</tr>
+					</tbody>
+				</table>
+
+		</div>
+		<script src="./node_modules/vue/dist/vue.min.js"></script>
+		<script>
+			new Vue({
+				el:"#demo",
+				data:{
+					columns:[
+						{title:"姓名"},
+						{title:"年龄"},
+						{title:"性别"},
+						{title:"操作"},
+					],
+					tbDatas:[],
+					newData:{
+						name:"",
+						age:0,
+						sex:"男"
+					}
+				},
+				methods:{
+					addData:function(data){
+						if(data.name!=""&&data.age!=""){
+							this.tbDatas.push(data);
+							this.newData={
+								name:"",
+								age:0,
+								sex:"男"
+							}
+						}else{
+							alert("请填写完整信息后添加！")
+						}
+					},
+					delData:function(index){
+						console.log(index)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

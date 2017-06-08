@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		.active {
+			background: red;
+		}
+	</style>
+	<body>
+		<div id="xs">
+			<p v-for="num in modeData" v-if="num>=5">{{num}}</p>
+			<p v-else v-on:click="eleClick(num)">v-eles</p>
+		</div>
+		<div id="xs1">
+			<button :class="btnClass">点击1</button>
+			<button @click="btnClick">点击2</button>
+		</div>
+		<script src="./node_modules/vue/dist/vue.min.js"></script>
+		<script>
+
+        // 创建一个 Vue 实例或 "ViewModel"
+        // 它连接 View 与 Model
+        new Vue({
+            el: '#xs',
+            data:{
+            	message:"示例",
+            	title:"demo",
+            	modeData:[1,2,3,4,5,6,7,8,9,10,11,12,13],
+            	eleClick:function(num){
+            		console.log(num)
+            	}
+            }
+        })
+        
+        
+        new Vue({
+        	el:"#xs1",
+        	data:{
+        		btnClass:"active",
+        		btnClick:function(){
+        			alert(1)
+        		}
+        	}
+        })
+		</script>
+	</body>	
+</html>
